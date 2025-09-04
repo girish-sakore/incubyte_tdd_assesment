@@ -6,7 +6,7 @@ RSpec.describe StringCalculator do
       it "returns 0" do
         expect(described_class.add("")).to eq(0)
       end
-    end
+    end   
 
     context "when input is not empty" do
       context "input does not contain any number" do
@@ -51,6 +51,13 @@ RSpec.describe StringCalculator do
         it "returns exception - no negative numbers allowed <numbers>" do
           expect{described_class.add("//;\n-1;2,-2,-5")}
           .to raise_error(ArgumentError, "negative numbers not allowed -1,-2,-5")
+        end
+
+        context "when input is not a string" do
+          it "returns exception - only string is allowed" do
+            expect { described_class.add(123) }
+            .to raise_error(ArgumentError, "only string is allowed")
+          end
         end
       end
 

@@ -1,11 +1,11 @@
 module StringCalculator
 
-  def self.add(string_numbers)
+  def self.add(string_numbers="")
+    raise ArgumentError.new("only string is allowed") unless string_numbers.is_a?(String)
     return 0 unless string_numbers.match?(/\d/)
-    negative_numbers = []
     numbers = string_numbers.split(/,|\n|;/).map(&:to_i)
 
-    numbers.select{ |x| negative_numbers << x if x.negative?}
+    negative_numbers = numbers.select{ |x| x.negative?}
 
     raise ArgumentError.new("negative numbers not allowed #{negative_numbers.join(',')}") if negative_numbers.any?
     return numbers.sum
