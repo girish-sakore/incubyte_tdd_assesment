@@ -34,8 +34,20 @@ RSpec.describe StringCalculator do
           expect(described_class.add("23,54")).to eq(77)
         end
       end
-      
 
+      context "when multiple inputs are given" do
+        it "returns total of all the numbers separated by comma" do
+          expect(described_class.add("1,2,3,4")).to eq(10)
+        end
+
+        it "returns total of all numbers with new line character" do
+          expect(described_class.add("1\n2,3")).to eq(6)
+        end
+
+        it "returns total of all numbers (with other delimiters)" do
+          expect(described_class.add("//;\n1;2")).to eq(3)
+        end
+      end
 
     end
   end
