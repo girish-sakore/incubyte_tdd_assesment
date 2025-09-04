@@ -47,6 +47,11 @@ RSpec.describe StringCalculator do
         it "returns total of all numbers (with other delimiters)" do
           expect(described_class.add("//;\n1;2")).to eq(3)
         end
+
+        it "returns exception - no negative numbers allowed <numbers>" do
+          expect{described_class.add("//;\n-1;2,-2,-5")}
+          .to raise_error(ArgumentError, "negative numbers not allowed -1,-2,-5")
+        end
       end
 
     end
